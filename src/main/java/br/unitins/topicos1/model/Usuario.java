@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 @Entity
 public class Usuario extends DefaultEntity {
 
+    //teste alrresrtfd
     
     private String nome;
     private String login;
