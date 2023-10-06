@@ -24,7 +24,7 @@ import jakarta.ws.rs.core.Response.Status;
 @Path("/pessoa")    
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class PessoaResouce {
+public class PessoaResource {
 
     @Inject
     PessoaService service;

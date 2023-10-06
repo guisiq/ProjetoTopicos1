@@ -6,29 +6,28 @@ import jakarta.validation.constraints.Size;
 
 public class EstadoDTO {
 
-   @NotBlank(message = "O campo nome não pode ser nulo.")
+    @NotBlank(message = "O campo nome não pode ser nulo.")
     private final String nome;
     @NotNull(message = "O campo sigla não pode ser nulo.")
-    @Size(min =2, max =2, message = "A sigla deve ter 2 digitos")
+    @Size(min = 2, max = 2, message = "A sigla deve ter 2 digitos")
     private final String sigla;
 
-
-    //CONSTRUTOR PADRÃO
+    // CONSTRUTOR PADRÃO
     public EstadoDTO(String nome, String sigla) {
         this.nome = nome;
         this.sigla = sigla;
     }
 
-
-    //GETTERS
+    // GETTERS
     public String getNome() {
         return nome;
     }
+
     public String getSigla() {
         return sigla;
     }
 
-    //HASHCODE
+    // HASHCODE
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -38,7 +37,7 @@ public class EstadoDTO {
         return result;
     }
 
-    //EQUALS
+    // EQUALS
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -60,6 +59,5 @@ public class EstadoDTO {
             return false;
         return true;
     }
-    
 
 }

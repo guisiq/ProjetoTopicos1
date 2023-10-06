@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 @Entity
 public class Endereco extends DefaultEntity {
 
+
+    
     private String bairro;
     private String quadra;
     private String rua;

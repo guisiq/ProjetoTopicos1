@@ -10,6 +10,7 @@ import br.unitins.topicos1.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class UsuarioServiceImpl implements UsuarioService {
@@ -37,9 +38,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setLogin(dto.login());
         usuario.setNome(dto.nome());
         usuario.setSenha(dto.senha());
-
-        // falta a implementacao dos telefones
-        // vcs (ALUNOS) devem implementar!!!!!
         
         return UsuarioResponseDTO.valueOf(usuario);
     }
@@ -47,6 +45,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional
     public void delete(Long id) {
+        if(!repository.deleteById(id)){
+            throw new NotFoundException();
+        }
     }
 
     @Override

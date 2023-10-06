@@ -19,7 +19,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     @Transactional
-    public PessoaResponseDTO insert(PessoaDTO dto){
+    public PessoaResponseDTO insert(PessoaDTO dto) {
         Pessoa novaPessoa = new Pessoa();
         novaPessoa.setNome(dto.getNome());
         novaPessoa.setCpf(dto.getCpf());
@@ -27,15 +27,18 @@ public class PessoaServiceImpl implements PessoaService {
         novaPessoa.setEndereco(dto.getEndereco());
         novaPessoa.setListaTelefone(dto.getListaTelefone());
         novaPessoa.setUsuario(dto.getUsuario());
+
+        repository.persist(novaPessoa);
+
         return PessoaResponseDTO.valueOf(novaPessoa);
     }
 
     @Override
     @Transactional
-    public PessoaResponseDTO update(PessoaDTO dto, Long id){
+    public PessoaResponseDTO update(PessoaDTO dto, Long id) {
 
         Pessoa pessoa = repository.findById(id);
-        if(pessoa != null ){
+        if (pessoa != null) {
             pessoa.setNome(dto.getNome());
             pessoa.setCpf(dto.getCpf());
             pessoa.setDataNascimento(dto.getDataNascimento());
@@ -47,29 +50,29 @@ public class PessoaServiceImpl implements PessoaService {
 
         return PessoaResponseDTO.valueOf(pessoa);
     }
-    
+
     @Override
     @Transactional
-    public void delete(Long id){
-        if(!repository.deleteById(id))
+    public void delete(Long id) {
+        if (!repository.deleteById(id))
             throw new NotFoundException();
     }
 
     @Override
-    public PessoaResponseDTO findById(Long id){
+    public PessoaResponseDTO findById(Long id) {
         return PessoaResponseDTO.valueOf(repository.findById(id));
     }
 
-    @Override 
+    @Override
     public List<PessoaResponseDTO> findByNome(String nome) {
         return repository.findByNome(nome).stream()
-        .map(e -> PessoaResponseDTO.valueOf(e)).toList();
+                .map(e -> PessoaResponseDTO.valueOf(e)).toList();
     }
 
     @Override
-    public List<PessoaResponseDTO> findByAll(){
+    public List<PessoaResponseDTO> findByAll() {
         return repository.listAll().stream()
-            .map(e -> PessoaResponseDTO.valueOf(e)).toList();
+                .map(e -> PessoaResponseDTO.valueOf(e)).toList();
     }
 
 }

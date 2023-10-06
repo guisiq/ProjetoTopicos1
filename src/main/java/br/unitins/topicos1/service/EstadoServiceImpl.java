@@ -32,12 +32,12 @@ public class EstadoServiceImpl implements EstadoService {
     @Override
     @Transactional
     public EstadoResponseDTO update(EstadoDTO dto, Long id) {
-        
+
         Estado estado = repository.findById(id);
         if (estado != null) {
             estado.setNome(dto.getNome());
             estado.setSigla(dto.getSigla());
-        } else 
+        } else
             throw new NotFoundException();
 
         return EstadoResponseDTO.valueOf(estado);
@@ -46,7 +46,7 @@ public class EstadoServiceImpl implements EstadoService {
     @Override
     @Transactional
     public void delete(Long id) {
-        if (!repository.deleteById(id)) 
+        if (!repository.deleteById(id))
             throw new NotFoundException();
     }
 
@@ -58,13 +58,13 @@ public class EstadoServiceImpl implements EstadoService {
     @Override
     public List<EstadoResponseDTO> findByNome(String nome) {
         return repository.findByNome(nome).stream()
-            .map(e -> EstadoResponseDTO.valueOf(e)).toList();
+                .map(e -> EstadoResponseDTO.valueOf(e)).toList();
     }
 
     @Override
     public List<EstadoResponseDTO> findByAll() {
         return repository.listAll().stream()
-            .map(e -> EstadoResponseDTO.valueOf(e)).toList();
+                .map(e -> EstadoResponseDTO.valueOf(e)).toList();
     }
-    
+
 }

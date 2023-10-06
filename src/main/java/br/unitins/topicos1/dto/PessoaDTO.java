@@ -15,15 +15,13 @@ public class PessoaDTO {
     @NotBlank(message = "O campo nome não pode ser nulo")
     private String nome;
 
-    @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$",
-        message = "O campo CPF deve estar formulado: 000.000.000-00")
+    @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$", message = "O campo CPF deve estar formulado: 000.000.000-00")
     private String cpf;
 
-    private LocalDate dataNascimento;  // Formatado para string
+    private LocalDate dataNascimento; // Formatado para string
     private Endereco endereco;
     private List<Telefone> listaTelefone;
     private Usuario usuario;
- 
 
     public String getDataNascimentoFormatted() {
         if (dataNascimento != null) {
@@ -34,7 +32,7 @@ public class PessoaDTO {
         }
     }
 
-    //CONSTRUTOR PADRÃO
+    // CONSTRUTOR PADRÃO
     public PessoaDTO(@NotBlank(message = "O campo nome não pode ser nulo") String nome,
             @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$", message = "O campo CPF deve estar formulado: 000.000.000-00") String cpf,
             LocalDate dataNascimento, List<Telefone> listaTelefone, Endereco endereco, Usuario usuario) {
@@ -46,9 +44,8 @@ public class PessoaDTO {
         this.usuario = usuario;
     }
 
-
-    //GETTERS E SETTERS
-  public String getNome() {
+    // GETTERS E SETTERS
+    public String getNome() {
         return nome;
     }
 
@@ -72,7 +69,7 @@ public class PessoaDTO {
         return usuario;
     }
 
-    //HASH CODE
+    // HASH CODE
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -86,7 +83,6 @@ public class PessoaDTO {
         return result;
     }
 
-  
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -128,7 +124,5 @@ public class PessoaDTO {
             return false;
         return true;
     }
-
-
 
 }

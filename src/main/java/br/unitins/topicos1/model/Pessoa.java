@@ -3,12 +3,10 @@ package br.unitins.topicos1.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -28,13 +26,11 @@ public class Pessoa extends DefaultEntity {
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name="pessoa_telefone",
-        joinColumns = @JoinColumn(name="id_pessoa"),
-        inverseJoinColumns = @JoinColumn(name="id_telefone"))
-        private List<Telefone> listaTelefone;
+    @OneToMany
+    @JoinColumn(name = "pessoa_id")
+    private List<Telefone> listaTelefone;
 
-    @ManyToOne
+    @OneToOne
     private Usuario usuario;
 
     public String getNome() {
@@ -83,6 +79,6 @@ public class Pessoa extends DefaultEntity {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }    
- 
+    }
+
 }
