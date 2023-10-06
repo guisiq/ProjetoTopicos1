@@ -1,9 +1,15 @@
 package br.unitins.topicos1.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Telefone extends DefaultEntity {
+
+    @ManyToOne
+    @JoinColumn(name= "pessoa_id")
+    private Pessoa pessoa;
     private String codigoArea;
     private String numero;
 

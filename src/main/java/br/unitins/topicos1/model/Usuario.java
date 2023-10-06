@@ -1,17 +1,26 @@
 package br.unitins.topicos1.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Usuario extends DefaultEntity {
 
-    //teste alrresrtfd
-    
+    @OneToOne
+    private Pessoa pessoa;
     private String nome;
     private String login;
     private String senha;
 
 
+
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
     public String getNome() {
         return nome;
     }

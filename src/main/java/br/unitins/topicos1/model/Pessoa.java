@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -33,6 +34,7 @@ public class Pessoa extends DefaultEntity {
         inverseJoinColumns = @JoinColumn(name="id_telefone"))
         private List<Telefone> listaTelefone;
 
+    @ManyToOne
     private Usuario usuario;
 
     public String getNome() {
