@@ -1,11 +1,8 @@
 package br.unitins.topicos1.resource;
 
-
-
-import br.unitins.topicos1.dto.PessoaDTO;
-import br.unitins.topicos1.dto.PessoaResponseDTO;
-import br.unitins.topicos1.service.EnderecoServiceImpl;
-import br.unitins.topicos1.service.PessoaService;
+import br.unitins.topicos1.dto.TelefoneDTO;
+import br.unitins.topicos1.dto.TelefoneResponseDTO;
+import br.unitins.topicos1.service.TelefoneService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -21,27 +18,24 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
-
-@Path("/pessoa")    
+@Path("/telefones")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class PessoaResource {
+public class TelefoneResource {
 
     @Inject
-    PessoaService service;
-    @Inject
-    EnderecoServiceImpl enderecoImpl;
+    TelefoneService service;
 
     @POST
-    public Response insert(@Valid PessoaDTO dto){
-        PessoaResponseDTO retorno = service.insert(dto);
+    public Response insert(@Valid TelefoneDTO dto) {
+        TelefoneResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
     }
 
     @PUT
     @Transactional
     @Path("/{id}")
-    public Response update (PessoaDTO dto, @PathParam("id") Long id) {
+    public Response update(TelefoneDTO dto, @PathParam("id") Long id) {
         service.update(dto, id);
         return Response.status(Status.NO_CONTENT).build();
     }
@@ -49,25 +43,26 @@ public class PessoaResource {
     @DELETE
     @Transactional
     @Path("/{id}")
-    public Response delete(@PathParam("id") Long id){
+    public Response delete(@PathParam("id") Long id) {
         service.delete(id);
         return Response.status(Status.NO_CONTENT).build();
     }
 
     @GET
-    public Response findAll(){
+    public Response findAll() {
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
     @Path("/{id}")
-    public Response findById(@PathParam("id") Long id){
+    public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
 
     @GET
-    @Path("/search/nome/{nome}")
-    public Response findByNome(@PathParam("nome") String nome){
-        return Response.ok(service.findByNome(nome)).build();
+    @Path("/search/numero/{numero}")
+    public Response findByTelefone(@PathParam("numero") String numero) {
+        return Response.ok(service.findByNumero(numero)).build();
     }
+
 }

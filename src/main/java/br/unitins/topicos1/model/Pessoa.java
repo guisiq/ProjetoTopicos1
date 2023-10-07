@@ -27,7 +27,7 @@ public class Pessoa extends DefaultEntity {
     private Endereco endereco;
 
     @OneToMany
-    @JoinColumn(name = "id_telefone")
+    @JoinColumn(name = "id_pessoa")
     private List<Telefone> listaTelefone;
 
     @OneToOne

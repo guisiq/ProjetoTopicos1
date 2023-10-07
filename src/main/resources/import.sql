@@ -5,61 +5,92 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
-INSERT INTO estado (nome, sigla) VALUES ('Acre', 'AC');
-INSERT INTO estado (nome, sigla) VALUES ('Alagoas', 'AL');
-INSERT INTO estado (nome, sigla) VALUES ('Amapá', 'AP');
-INSERT INTO estado (nome, sigla) VALUES ('Amazonas', 'AM');
-INSERT INTO estado (nome, sigla) VALUES ('Bahia', 'BA');
-INSERT INTO estado (nome, sigla) VALUES ('Ceará', 'CE');
-INSERT INTO estado (nome, sigla) VALUES ('Distrito Federal', 'DF');
-INSERT INTO estado (nome, sigla) VALUES ('Espírito Santo', 'ES');
-INSERT INTO estado (nome, sigla) VALUES ('Goiás', 'GO');
-INSERT INTO estado (nome, sigla) VALUES ('Maranhão', 'MA');
-INSERT INTO estado (nome, sigla) VALUES ('Mato Grosso', 'MT');
-INSERT INTO estado (nome, sigla) VALUES ('Mato Grosso do Sul', 'MS');
-INSERT INTO estado (nome, sigla) VALUES ('Minas Gerais', 'MG');
-INSERT INTO estado (nome, sigla) VALUES ('Pará', 'PA');
-INSERT INTO estado (nome, sigla) VALUES ('Paraíba', 'PB');
-INSERT INTO estado (nome, sigla) VALUES ('Paraná', 'PR');
-INSERT INTO estado (nome, sigla) VALUES ('Pernambuco', 'PE');
-INSERT INTO estado (nome, sigla) VALUES ('Piauí', 'PI');
-INSERT INTO estado (nome, sigla) VALUES ('Rio de Janeiro', 'RJ');
-INSERT INTO estado (nome, sigla) VALUES ('Rio Grande do Norte', 'RN');
-INSERT INTO estado (nome, sigla) VALUES ('Rio Grande do Sul', 'RS');
-INSERT INTO estado (nome, sigla) VALUES ('Rondônia', 'RO');
-INSERT INTO estado (nome, sigla) VALUES ('Roraima', 'RR');
-INSERT INTO estado (nome, sigla) VALUES ('Santa Catarina', 'SC');
-INSERT INTO estado (nome, sigla) VALUES ('São Paulo', 'SP');
-INSERT INTO estado (nome, sigla) VALUES ('Sergipe', 'SE');
-INSERT INTO estado (nome, sigla) VALUES ('Tocantins', 'TO');
+--INSERT ESTADOS
+INSERT INTO estado (nome, sigla)
+VALUES
+  ('Acre', 'AC'),
+  ('Alagoas', 'AL'),
+  ('Amapá', 'AP'),
+  ('Amazonas', 'AM'),
+  ('Bahia', 'BA'),
+  ('Ceará', 'CE'),
+  ('Distrito Federal', 'DF'),
+  ('Espírito Santo', 'ES'),
+  ('Goiás', 'GO'),
+  ('Maranhão', 'MA'),
+  ('Mato Grosso', 'MT'),
+  ('Mato Grosso do Sul', 'MS'),
+  ('Minas Gerais', 'MG'),
+  ('Pará', 'PA'),
+  ('Paraíba', 'PB'),
+  ('Paraná', 'PR'),
+  ('Pernambuco', 'PE'),
+  ('Piauí', 'PI'),
+  ('Rio de Janeiro', 'RJ'),
+  ('Rio Grande do Norte', 'RN'),
+  ('Rio Grande do Sul', 'RS'),
+  ('Rondônia', 'RO'),
+  ('Roraima', 'RR'),
+  ('Santa Catarina', 'SC'),
+  ('São Paulo', 'SP'),
+  ('Sergipe', 'SE'),
+  ('Tocantins', 'TO');
 
-INSERT INTO cidade (nome, id_estado) VALUES ('Rio Branco', 1);
-INSERT INTO cidade (nome, id_estado) VALUES ('Macapá', 2);
-INSERT INTO cidade (nome, id_estado) VALUES ('Maceió', 3);
-INSERT INTO cidade (nome, id_estado) VALUES ('Manaus', 4);
-INSERT INTO cidade (nome, id_estado) VALUES ('Salvador', 5);
-INSERT INTO cidade (nome, id_estado) VALUES ('Fortaleza', 6);
-INSERT INTO cidade (nome, id_estado) VALUES ('Brasília', 7);
-INSERT INTO cidade (nome, id_estado) VALUES ('Vitória', 8);
-INSERT INTO cidade (nome, id_estado) VALUES ('Goiânia', 9);
-INSERT INTO cidade (nome, id_estado) VALUES ('São Luís', 10);
-INSERT INTO cidade (nome, id_estado) VALUES ('Cuiabá', 11);
-INSERT INTO cidade (nome, id_estado) VALUES ('Campo Grande', 12);
-INSERT INTO cidade (nome, id_estado) VALUES ('Belo Horizonte', 13);
-INSERT INTO cidade (nome, id_estado) VALUES ('Belém', 14);
-INSERT INTO cidade (nome, id_estado) VALUES ('João Pessoa', 15);
-INSERT INTO cidade (nome, id_estado) VALUES ('Curitiba', 16);
-INSERT INTO cidade (nome, id_estado) VALUES ('Recife', 17);
-INSERT INTO cidade (nome, id_estado) VALUES ('Teresina', 18);
-INSERT INTO cidade (nome, id_estado) VALUES ('Rio de Janeiro', 19);
-INSERT INTO cidade (nome, id_estado) VALUES ('Natal', 20);
-INSERT INTO cidade (nome, id_estado) VALUES ('Porto Alegre', 21);
-INSERT INTO cidade (nome, id_estado) VALUES ('Porto Velho', 22);
-INSERT INTO cidade (nome, id_estado) VALUES ('Boa Vista', 23);
-INSERT INTO cidade (nome, id_estado) VALUES ('Florianópolis', 24);
-INSERT INTO cidade (nome, id_estado) VALUES ('São Paulo', 25);
-INSERT INTO cidade (nome, id_estado) VALUES ('Aracaju', 26);
-INSERT INTO cidade (nome, id_estado) VALUES ('Palmas', 27);
+-- INSERT CIDADES
+INSERT INTO cidade (nome, id_estado) VALUES
+  ('Rio Branco', 1),
+  ('Macapá', 2),
+  ('Maceió', 3),
+  ('Manaus', 4),
+  ('Salvador', 5),
+  ('Fortaleza', 6),
+  ('Brasília', 7),
+  ('Vitória', 8),
+  ('Goiânia', 9),
+  ('São Luís', 10),
+  ('Cuiabá', 11),
+  ('Campo Grande', 12),
+  ('Belo Horizonte', 13),
+  ('Belém', 14),
+  ('João Pessoa', 15),
+  ('Curitiba', 16),
+  ('Recife', 17),
+  ('Teresina', 18),
+  ('Rio de Janeiro', 19),
+  ('Natal', 20),
+  ('Porto Alegre', 21),
+  ('Porto Velho', 22),
+  ('Boa Vista', 23),
+  ('Florianópolis', 24),
+  ('São Paulo', 25),
+  ('Aracaju', 26),
+  ('Palmas', 27);
+
+
+--INSERT DOS ENDERECOS
+INSERT INTO public.endereco (cidade_id, bairro, lote, quadra, rua)
+VALUES 
+  (27, 'Plano diretor Sul', 10, '403Sul', 11),
+  (27, 'Plano diretor Norte', 11, '110Norte', 12),
+  (27, 'Aureny I', 12, 'Taquaralto', 13),
+  (27, 'Aureny II', 13, 'Taquaralto', 14),
+  (27, 'Aureny III', 14, 'Taquaralto', 15),
+  (25, 'Zona Leste', 15, '403Sul', 16),
+  (25, 'Zona Sul', 16, '403Sul', 17),
+  (25, 'Zona Norte', 17, '403Sul', 18),
+  (25, 'Zona Oeste', 18, '403Sul', 19),
+  (1, 'Dinossauro', 01, 'Era', 10);
+
+
+
+--INSERT USUARIOS
+  INSERT INTO public.usuario(login, senha) VALUES 
+	( 'pessoa1', '1234'),
+	( 'pessoa2', '1234'),
+	( 'pessoa3', '1234'),
+	( 'pessoa4', '1234'),
+	( 'pessoa5', '1234');
+	
 
 
 

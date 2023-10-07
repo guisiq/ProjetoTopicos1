@@ -8,7 +8,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class CidadeRepository implements PanacheRepository<Cidade> {
-    public List<Cidade> findByNome(String cidade) {
-        return find("UPPER(cidade) LIKE UPPER(?1)", "%" + cidade + "%").list();
+    public List<Cidade> findByNome(String nome) {
+        return find("UPPER(nome) LIKE UPPER(?1)", "%" + nome + "%").list();
     }
 }

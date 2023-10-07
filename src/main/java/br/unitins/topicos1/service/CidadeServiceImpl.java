@@ -50,19 +50,19 @@ public class CidadeServiceImpl implements CidadeService {
     }
 
     @Override
-    public CidadeResponseDTO findById(Long id){
+    public CidadeResponseDTO findById(Long id) {
         return CidadeResponseDTO.valueOf(repository.findById(id));
     }
 
     @Override
-    public List<CidadeResponseDTO> findByNome(String cidade){
-        return repository.findByNome(cidade).stream()
-        .map(e -> CidadeResponseDTO.valueOf(e)).toList();
+    public List<CidadeResponseDTO> findByNome(String nome) {
+        return repository.findByNome(nome).stream()
+                .map(e -> CidadeResponseDTO.valueOf(e)).toList();
     }
 
     @Override
-    public List<CidadeResponseDTO> findByAll(){
+    public List<CidadeResponseDTO> findByAll() {
         return repository.listAll().stream()
-        .map(e -> CidadeResponseDTO.valueOf(e)).toList();
+                .map(e -> CidadeResponseDTO.valueOf(e)).toList();
     }
 }

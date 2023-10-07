@@ -39,7 +39,6 @@ public class EstadoServiceImpl implements EstadoService {
             estado.setSigla(dto.getSigla());
         } else
             throw new NotFoundException();
-
         return EstadoResponseDTO.valueOf(estado);
     }
 
@@ -66,5 +65,4 @@ public class EstadoServiceImpl implements EstadoService {
         return repository.listAll().stream()
                 .map(e -> EstadoResponseDTO.valueOf(e)).toList();
     }
-
 }
