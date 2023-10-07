@@ -18,7 +18,7 @@ public class PessoaDTO {
     @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$", message = "O campo CPF deve estar formulado: 000.000.000-00")
     private String cpf;
 
-    private LocalDate dataNascimento; // Formatado para string
+    private LocalDate dataNascimento; 
     private Endereco endereco;
     private List<Telefone> listaTelefone;
     private Usuario usuario;

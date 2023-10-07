@@ -31,7 +31,7 @@ public class Pessoa extends DefaultEntity {
     private List<Telefone> listaTelefone;
 
     @OneToOne
-    @JoinColumn(name =  "pessoaUsuario_id")
+    @JoinColumn(name =  "id_usuario")
     private Usuario usuario;
 
     public String getNome() {

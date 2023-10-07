@@ -22,7 +22,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     public UsuarioResponseDTO insert(UsuarioDTO dto) {
         Usuario novoUsuario = new Usuario();
-        novoUsuario.setNome(dto.nome());
         novoUsuario.setLogin(dto.login());
         novoUsuario.setSenha(dto.senha());
 
@@ -36,7 +35,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioResponseDTO update(UsuarioDTO dto, Long id) {
         Usuario usuario = repository.findById(id);
         usuario.setLogin(dto.login());
-        usuario.setNome(dto.nome());
         usuario.setSenha(dto.senha());
         
         return UsuarioResponseDTO.valueOf(usuario);
@@ -56,7 +54,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public List<UsuarioResponseDTO> findByNome(String nome) {
+    public List<UsuarioResponseDTO> findByNome(String login) {
              return null;
     }
 
