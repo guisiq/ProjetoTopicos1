@@ -21,7 +21,7 @@ import jakarta.ws.rs.core.Response.Status;
 @Path("/enderecos")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class EnderencoResource {
+public class EnderecoResource {
 
     @Inject
     EnderecoService service;

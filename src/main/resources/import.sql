@@ -16,3 +16,6 @@ insert into cidade (nome, id_estado) values('Porto Nacional', 1);
 insert into cidade (nome, id_estado) values('Goiania', 2);
 insert into cidade (nome, id_estado) values('Rio de Janeiro', 3);
 insert into cidade (nome, id_estado) values('São Paulo', 4);
+
+
+

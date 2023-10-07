@@ -1,17 +1,25 @@
 package br.unitins.topicos1.dto;
 
+import br.unitins.topicos1.model.Cidade;
+
 public class EnderecoDTO {
 
+    private Cidade cidade;
     private String bairro;
     private String quadra;
     private String rua;
     private String lote;
 
-    public EnderecoDTO(String bairro, String quadra, String rua, String lote) {
+    public EnderecoDTO(Cidade cidade, String bairro, String quadra, String rua, String lote) {
+        this.cidade = cidade;
         this.bairro = bairro;
         this.quadra = quadra;
         this.rua = rua;
         this.lote = lote;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
     }
 
     public String getBairro() {
@@ -34,6 +42,7 @@ public class EnderecoDTO {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
         result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
         result = prime * result + ((quadra == null) ? 0 : quadra.hashCode());
         result = prime * result + ((rua == null) ? 0 : rua.hashCode());
@@ -50,6 +59,11 @@ public class EnderecoDTO {
         if (getClass() != obj.getClass())
             return false;
         EnderecoDTO other = (EnderecoDTO) obj;
+        if (cidade == null) {
+            if (other.cidade != null)
+                return false;
+        } else if (!cidade.equals(other.cidade))
+            return false;
         if (bairro == null) {
             if (other.bairro != null)
                 return false;

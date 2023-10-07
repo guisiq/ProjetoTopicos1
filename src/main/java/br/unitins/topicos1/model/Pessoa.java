@@ -16,7 +16,7 @@ public class Pessoa extends DefaultEntity {
     @Column(length = 60)
     private String nome;
 
-    @Column(length = 11)
+    @Column(length = 20)
     private String cpf;
 
     @Column(name = "data_nascimento")
@@ -27,10 +27,11 @@ public class Pessoa extends DefaultEntity {
     private Endereco endereco;
 
     @OneToMany
-    @JoinColumn(name = "pessoa_id")
+    @JoinColumn(name = "id_telefone")
     private List<Telefone> listaTelefone;
 
     @OneToOne
+    @JoinColumn(name =  "pessoaUsuario_id")
     private Usuario usuario;
 
     public String getNome() {

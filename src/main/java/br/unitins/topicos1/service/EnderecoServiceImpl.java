@@ -5,7 +5,7 @@ import java.util.List;
 import br.unitins.topicos1.dto.EnderecoDTO;
 import br.unitins.topicos1.dto.EnderecoResponseDTO;
 import br.unitins.topicos1.model.Endereco;
-import br.unitins.topicos1.repository.EnderecoRespository;
+import br.unitins.topicos1.repository.EnderecoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -15,12 +15,13 @@ import jakarta.ws.rs.NotFoundException;
 public class EnderecoServiceImpl implements EnderecoService {
 
     @Inject
-    EnderecoRespository repository;
+    EnderecoRepository repository;
 
     @Override
     @Transactional
     public EnderecoResponseDTO insert(EnderecoDTO dto) {
         Endereco novoEndereco = new Endereco();
+        novoEndereco.setCidade(dto.getCidade());
         novoEndereco.setBairro(dto.getBairro());
         novoEndereco.setQuadra(dto.getQuadra());
         novoEndereco.setLote(dto.getLote());
@@ -37,6 +38,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 
         Endereco endereco = repository.findById(id);
         if (endereco != null) {
+            endereco.setCidade(dto.getCidade());
             endereco.setBairro(dto.getBairro());
             endereco.setQuadra(dto.getQuadra());
             endereco.setLote(dto.getLote());
