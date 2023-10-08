@@ -22,8 +22,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     public UsuarioResponseDTO insert(UsuarioDTO dto) {
         Usuario novoUsuario = new Usuario();
-        novoUsuario.setLogin(dto.login());
-        novoUsuario.setSenha(dto.senha());
+        novoUsuario.setLogin(dto.getLogin());
+        novoUsuario.setSenha(dto.getSenha());
 
         repository.persist(novoUsuario);
 
@@ -34,8 +34,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     public UsuarioResponseDTO update(UsuarioDTO dto, Long id) {
         Usuario usuario = repository.findById(id);
-        usuario.setLogin(dto.login());
-        usuario.setSenha(dto.senha());
+        usuario.setLogin(dto.getLogin());
+        usuario.setSenha(dto.getSenha());
         
         return UsuarioResponseDTO.valueOf(usuario);
     }

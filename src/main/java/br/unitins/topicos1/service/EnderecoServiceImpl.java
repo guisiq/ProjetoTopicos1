@@ -63,7 +63,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 
     @Override
     public List<EnderecoResponseDTO> findByNome(String bairro) {
-        return repository.findByNome(bairro).stream()
+        return repository.findByBairro(bairro).stream()
                 .map(e -> EnderecoResponseDTO.valueOf(e)).toList();
     }
 

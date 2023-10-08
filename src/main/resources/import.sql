@@ -75,26 +75,52 @@ VALUES
   (27, 'Aureny I', 12, 'Taquaralto', 13),
   (27, 'Aureny II', 13, 'Taquaralto', 14),
   (27, 'Aureny III', 14, 'Taquaralto', 15),
-  (25, 'Zona Leste', 15, '403Sul', 16),
-  (25, 'Zona Sul', 16, '403Sul', 17),
-  (25, 'Zona Norte', 17, '403Sul', 18),
-  (25, 'Zona Oeste', 18, '403Sul', 19),
+  (25, 'Zona Leste', 15, 'Av. Paulista', 16),
+  (25, 'Zona Sul', 16, 'Rua Oscar Freire', 17),
+  (25, 'Zona Norte', 17, 'Av. Tiradentes', 18),
+  (25, 'Zona Oeste', 18, 'Rua Augusta', 19),
   (1, 'Dinossauro', 01, 'Era', 10);
-
 
 
 --INSERT USUARIOS
   INSERT INTO public.usuario(login, senha) VALUES 
-	( 'pessoa1', '1234'),
-	( 'pessoa2', '1234'),
-	( 'pessoa3', '1234'),
-	( 'pessoa4', '1234'),
-	( 'pessoa5', '1234');
-	
+	( 'maria.silva', '1234'),
+	( 'joao.oliveira', '1234'),
+	( 'amanda.costa', '1234'),
+	( 'pedro.santos', '1234'),
+	( 'luana.almeida', '1234'),
+	( 'carlos.ferreira', '1234'),
+	( 'laura.oliveira', '1234'),
+	( 'ricardo.costa', '1234'),
+	( 'fernanda.santos', '1234'),
+	( 'aline.almeida', '1234');
 
 
+--INSERT PESSOAS
+INSERT INTO public.pessoa (data_nascimento, id_endereco, id_usuario, cpf, nome)
+VALUES
+  ('2000-03-15', 1, 1, '123.456.789-01', 'Maria Silva'),
+  ('1995-07-20', 2, 2, '987.654.321-00', 'João Oliveira'),
+  ('1988-10-05', 3, 3, '111.222.333-44', 'Amanda Costa'),
+  ('1980-12-25', 4, 4, '555.888.999-00', 'Pedro Santos'),
+  ('1992-04-18', 5, 5, '777.666.555-44', 'Luana Almeida'),
+  ('1990-11-08', 6, 6, '111.222.333-55', 'Carlos Ferreira'),
+  ('1985-06-02', 7, 7, '444.555.666-77', 'Laura Oliveira'),
+  ('1997-09-12', 8, 8, '888.777.666-11', 'Ricardo Costa'),
+  ('1975-08-22', 9, 9, '333.222.111-44', 'Fernanda Santos'),
+  ('1994-07-01', 10, 10, '999.888.777-22', 'Aline Almeida');
 
 
-
-
-
+--INSERT TELEFONES
+INSERT INTO public.telefone (id_pessoa, codigoarea, numero)
+VALUES 
+  (1, 63, '99455-4568'),
+  (2, 81, '98765-4321'),
+  (3, 55, '99888-7766'),
+  (4, 11, '91234-5678'),
+  (5, 47, '96666-7777'),
+  (6, 21, '95555-1234'),
+  (7, 42, '93333-8888'),
+  (8, 31, '90000-1111'),
+  (9, 48, '97777-5555'),
+  (10, 84, '98888-2222');

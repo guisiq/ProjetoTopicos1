@@ -8,7 +8,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class EnderecoRepository implements PanacheRepository<Endereco> {
-    public List<Endereco> findByNome(String bairro) {
+    public List<Endereco> findByBairro(String bairro) {
         return find("UPPER(bairro) LIKE UPPER(?1)", "%" + bairro + "%").list();
     }
 }

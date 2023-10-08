@@ -23,14 +23,14 @@ public class PessoaDTO {
     private List<Telefone> listaTelefone;
     private Usuario usuario;
 
-    public String getDataNascimentoFormatted() {
-        if (dataNascimento != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            return dataNascimento.format(formatter);
-        } else {
-            return null;
-        }
-    }
+    // public String getDataNascimentoFormatted() {
+    //     if (dataNascimento != null) {
+    //         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    //         return dataNascimento.format(formatter);
+    //     } else {
+    //         return null;
+    //     }
+    // }
 
     // CONSTRUTOR PADRÃO
     public PessoaDTO(@NotBlank(message = "O campo nome não pode ser nulo") String nome,
