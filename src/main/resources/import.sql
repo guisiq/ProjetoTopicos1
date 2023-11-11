@@ -83,8 +83,8 @@ VALUES
 
 
 --INSERT USUARIOS
-  INSERT INTO public.usuario(login, senha) VALUES 
-	( 'maria.silva', '1234'),
+  INSERT INTO usuario(login, senha) VALUES 
+	( 'mariasilva', '1234'),
 	( 'joao.oliveira', '1234'),
 	( 'amanda.costa', '1234'),
 	( 'pedro.santos', '1234'),
