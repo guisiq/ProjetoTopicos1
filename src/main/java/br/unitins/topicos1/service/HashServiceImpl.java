@@ -18,11 +18,13 @@ public class HashServiceImpl implements HashService {
 
     @Override
     public String getHashSenha(String senha) {
+        
         try {
             byte[] result = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512")
                     .generateSecret(new PBEKeySpec(senha.toCharArray(),
                             salt.getBytes(), iterationCount, keyLength))
                     .getEncoded();
+
             return Base64.getEncoder().encodeToString(result);
         } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
             e.printStackTrace();

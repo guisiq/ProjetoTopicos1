@@ -31,6 +31,7 @@ public class AuthResource {
 
     @POST
     public Response login(@Valid LoginDTO dto){
+        
         String hashSenha = hashService.getHashSenha(dto.senha());
 
         UsuarioResponseDTO result = service.findByLoginAndSenha(dto.login(), hashSenha);

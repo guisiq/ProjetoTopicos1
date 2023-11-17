@@ -1,9 +1,11 @@
 package br.unitins.topicos1.resource;
 
+import org.jboss.logging.Logger;
 
 import br.unitins.topicos1.dto.EstadoDTO;
 import br.unitins.topicos1.dto.EstadoResponseDTO;
 import br.unitins.topicos1.service.EstadoService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -26,6 +28,8 @@ public class EstadoResource {
 
     @Inject
     EstadoService service;
+
+    private static final Logger LOG = Logger.getLogger(EstadoResource.class);
 
     @POST
     public Response insert(@Valid EstadoDTO dto) {    
@@ -60,6 +64,7 @@ public class EstadoResource {
 
     @GET
     @Path("/{id}")
+    @RolesAllowed({"User", "Admin"})
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }

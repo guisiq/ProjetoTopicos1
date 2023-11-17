@@ -60,7 +60,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioResponseDTO findById(Long id) {
-        return null;
+        return UsuarioResponseDTO.valueOf(repository.findById(id));
     }
 
     @Override
@@ -88,7 +88,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioResponseDTO findByLogin(String login) {
        Usuario usuario = repository.findByLogin(login);
        if (usuario == null)
-        throw new ValidationException("login", "Login ou senha inválido");
+        throw new ValidationException("login", "Login inválido");
         
         return UsuarioResponseDTO.valueOf(usuario);
     }

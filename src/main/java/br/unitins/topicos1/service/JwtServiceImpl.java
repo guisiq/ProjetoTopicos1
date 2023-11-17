@@ -9,7 +9,6 @@ import br.unitins.topicos1.dto.UsuarioResponseDTO;
 import io.smallrye.jwt.build.Jwt;
 import jakarta.enterprise.context.ApplicationScoped;
 
-
 @ApplicationScoped
 public class JwtServiceImpl implements JwtService {
 
@@ -21,13 +20,13 @@ public class JwtServiceImpl implements JwtService {
         Instant expiryDate = now.plus(EXPIRATION_TIME);
 
         Set<String> roles = new HashSet<String>();
-        roles.add("User");
+        roles.add(dto.perfil().getLabel());
 
         return Jwt.issuer("unitins-jwt")
-            .subject(dto.login())
-            .groups(roles)
-            .expiresAt(expiryDate)
-            .sign();
-    }   
+                .subject(dto.login())
+                .groups(roles)
+                .expiresAt(expiryDate)
+                .sign();
+    }
 
 }

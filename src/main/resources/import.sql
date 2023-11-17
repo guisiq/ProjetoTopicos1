@@ -83,17 +83,17 @@ VALUES
 
 
 --INSERT USUARIOS
-  INSERT INTO usuario(login, senha) VALUES 
-	( 'mariasilva', '1234'),
-	( 'joao.oliveira', '1234'),
-	( 'amanda.costa', '1234'),
-	( 'pedro.santos', '1234'),
-	( 'luana.almeida', '1234'),
-	( 'carlos.ferreira', '1234'),
-	( 'laura.oliveira', '1234'),
-	( 'ricardo.costa', '1234'),
-	( 'fernanda.santos', '1234'),
-	( 'aline.almeida', '1234');
+  INSERT INTO usuario(login, senha, perfil) VALUES 
+	( 'mariasilva', '1234',1),
+	( 'joao.oliveira', '1234',2),
+	( 'amanda.costa', '1234',1),
+	( 'pedro.santos', '1234',2),
+	( 'luana.almeida', '1234',1),
+	( 'carlos.ferreira', '1234',2),
+	( 'laura.oliveira', '1234',1),
+	( 'ricardo.costa', '1234',2),
+	( 'fernanda.santos', '1234',1),
+	( 'aline.almeida', '1234',2);
 
 
 --INSERT PESSOAS
