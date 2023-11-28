@@ -83,8 +83,10 @@ VALUES
 
 
 --INSERT USUARIOS
+insert into usuario ( login, senha, perfil) values('musk', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', 1);
+
   INSERT INTO usuario(login, senha, perfil) VALUES 
-	( 'mariasilva', '1234',1),
+	( 'mariasilva', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==',2),
 	( 'joao.oliveira', '1234',2),
 	( 'amanda.costa', '1234',1),
 	( 'pedro.santos', '1234',2),

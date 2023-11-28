@@ -8,32 +8,27 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.NoResultException;
 
 @ApplicationScoped
-public class UsuarioRepository implements PanacheRepository<Usuario>{
+public class UsuarioRepository implements PanacheRepository<Usuario> {
     public List<Usuario> findByNome(String login) {
-        return find("UPPER(login) LIKE UPPER(?1) ", "%"+login+"%").list();
+        return find("UPPER(login) LIKE UPPER(?1) ", "%" + login + "%").list();
     }
 
-    public Usuario findByLogin(String login){
-        try{
+    public Usuario findByLogin(String login) {
+        try {
             return find("login = ?1", login).singleResult();
-        } catch(NoResultException e){
+        } catch (NoResultException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-     public Usuario findByLoginAndSenha(String login, String senha){
-        if(login == null || senha == null)
-        return null;
-        
-        return find("login = ?1 AND senha =?2",login, senha).firstResult();
-    }
+    public Usuario findByLoginAndSenha(String login, String senha) {
+        try {
+            return find("login = ?1 AND senha = ?2", login, senha).singleResult();
+        } catch (NoResultException e) {
+            e.printStackTrace();
+            return null;
+        }
 
-    public Usuario findByLoginAndUsuario(String login, String senha){
-        if(login == null || senha == null)
-        return null;
-        
-        return find("login = ?1 AND senha =?2",login, senha).firstResult();
     }
-
 }

@@ -27,10 +27,16 @@ public class UsuarioResource {
     @Inject
     UsuarioService service;
 
+    // @POST
+    // public Response insert(@Valid UsuarioDTO dto) {
+    //     UsuarioResponseDTO retorno = service.insert(dto);
+    //     return Response.status(201).entity(retorno).build();
+    // }
+
+
     @POST
-    public Response insert(@Valid UsuarioDTO dto) {
-        UsuarioResponseDTO retorno = service.insert(dto);
-        return Response.status(201).entity(retorno).build();
+    public Response insert(UsuarioDTO dto){
+         return Response.status(Status.CREATED).entity(service.insert(dto)).build();
     }
 
     @PUT
@@ -38,7 +44,7 @@ public class UsuarioResource {
     @Path("/{id}")
     public Response update(UsuarioDTO dto, @PathParam("id") Long id) {
         service.update(dto, id);
-        return Response.status(Status.NO_CONTENT).build();
+        return Response.noContent().build();
     }
 
     @DELETE
@@ -46,7 +52,7 @@ public class UsuarioResource {
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         service.delete(id);
-        return Response.status(Status.NO_CONTENT).build();
+        return Response.noContent().build();
     }
 
     @GET

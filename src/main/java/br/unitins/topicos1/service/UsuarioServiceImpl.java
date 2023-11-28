@@ -25,13 +25,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional
     public UsuarioResponseDTO insert(UsuarioDTO dto) {
+
         if (repository.findByLogin(dto.login()) != null) {
             throw new ValidationException("login", "Login já existe.");
 
         }
         Usuario novoUsuario = new Usuario();
         novoUsuario.setLogin(dto.login());
-        novoUsuario.setSenha(dto.senha());
         novoUsuario.setSenha(hashService.getHashSenha(dto.senha()));
         novoUsuario.setPerfil(Perfil.valueOf(dto.idPerfil()));
 

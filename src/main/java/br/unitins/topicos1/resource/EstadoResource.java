@@ -29,7 +29,7 @@ public class EstadoResource {
     @Inject
     EstadoService service;
 
-    private static final Logger LOG = Logger.getLogger(EstadoResource.class);
+    // private static final Logger LOG = Logger.getLogger(EstadoResource.class);
 
     @POST
     public Response insert(@Valid EstadoDTO dto) {    
@@ -64,7 +64,7 @@ public class EstadoResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({"User", "Admin"})
+    @RolesAllowed({"User","Admin"})
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
