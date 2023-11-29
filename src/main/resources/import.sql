@@ -83,19 +83,17 @@ VALUES
 
 
 --INSERT USUARIOS
-insert into usuario ( login, senha, perfil) values('musk', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==', 1);
-
-  INSERT INTO usuario(login, senha, perfil) VALUES 
-	( 'mariasilva', 'yEaSZv1mx2Hf11tomtEAY3HUG2hrQS2ACE17U1PeCoA7PFIhHARbDredPke5UTKwvMVA+jod2rMVKSoDzm8p3Q==',2),
-	( 'joao.oliveira', '1234',2),
-	( 'amanda.costa', '1234',1),
-	( 'pedro.santos', '1234',2),
-	( 'luana.almeida', '1234',1),
-	( 'carlos.ferreira', '1234',2),
-	( 'laura.oliveira', '1234',1),
-	( 'ricardo.costa', '1234',2),
-	( 'fernanda.santos', '1234',1),
-	( 'aline.almeida', '1234',2);
+  INSERT INTO usuario(login, senha, perfil) VALUES --SENHA: "1234"
+	( 'mariasilva', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2),
+	( 'joao.oliveira', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2),
+	( 'amanda.costa', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',1),
+	( 'pedro.santos', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2),
+	( 'luana.almeida', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',1),
+	( 'carlos.ferreira', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2),
+	( 'laura.oliveira', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',1),
+	( 'ricardo.costa', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2),
+	( 'fernanda.santos', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',1),
+	( 'aline.almeida', 'O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==',2);
 
 
 --INSERT PESSOAS
