@@ -3,29 +3,29 @@ package br.unitins.topicos1;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static io.restassured.RestAssured.given;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItem;
-import static org.junit.jupiter.api.Assertions.assertAll;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.Test;
 
-import io.restassured.RestAssured;
+
 import io.restassured.http.ContentType;
-import io.restassured.parsing.Parser;
-import static org.hamcrest.MatcherAssert.assertThat;
+
 
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
+
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
-import br.unitins.topicos1.model.Perfil;
+
 import br.unitins.topicos1.service.UsuarioService;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
+
 
 @QuarkusTest
 public class UsuarioResourceTest {
@@ -45,9 +45,9 @@ public class UsuarioResourceTest {
                                 .then()
                                 .statusCode(201)
                                 .body(
-                                "login", is("Teste"),
-                "senha", is("O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==")
-                );
+                                                "login", is("Teste"),
+                                                "senha",
+                                                is("O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA=="));
                 ;
 
         }
@@ -59,34 +59,49 @@ public class UsuarioResourceTest {
 
                 UsuarioResponseDTO usuarioTest = usuarioService.insert(usuarioDTO);
                 Long id = usuarioTest.id();
-                
+
                 // Crie um novo DTO para a atualização do usuário
                 UsuarioDTO dtoUpdate = new UsuarioDTO(
-                        "testeNovo",
-                        "555",
-                        2);
+                                "testeNovo",
+                                "555",
+                                2);
 
                 // Faça a requisição PUT para atualizar o usuário
                 given()
-                        .contentType(ContentType.JSON)
-                        .body(dtoUpdate)
-                        .when().put("/usuarios/" + id)
-                        .then()
-                        .statusCode(204);
+                                .contentType(ContentType.JSON)
+                                .body(dtoUpdate)
+                                .when().put("/usuarios/" + id)
+                                .then()
+                                .statusCode(204);
 
                 UsuarioResponseDTO updatedUser = usuarioService.findById(id);
                 assertEquals(dtoUpdate.login(), "testeNovo");
                 assertEquals(dtoUpdate.senha(), "555");
 
+        }
 
+        @Test
+        public void testDelete() {
+                // Insira um registro de teste antes de deletar
+                UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234", 1);
 
-                // assertAll("Verificar atualização do usuário",
-                //                 () -> assertEquals("testeNovo", updatedUser.login(),
-                //                                 "Login não foi atualizado corretamente."),
-                //                 () -> assertEquals("555", updatedUser.senha(),
-                //                                 "Senha não foi atualizada corretamente."),
-                //                 () -> assertEquals(, updatedUser.perfil(),
-                //                                 "Perfil não foi atualizado corretamente."));
+                Response insertResponse = given()
+                                .contentType(ContentType.JSON)
+                                .body(usuarioDTO)
+                                .when()
+                                .post("/usuarios");
+
+                insertResponse.then()
+                                .statusCode(201);
+
+                Long id = insertResponse.jsonPath().getLong("id");
+
+                // Agora teste o método de exclusão
+                given()
+                                .when()
+                                .delete("/usuarios/" + id)
+                                .then()
+                                .statusCode(204);
         }
 
         @Test
@@ -110,27 +125,26 @@ public class UsuarioResourceTest {
         }
 
         @Test
-        public void testDelete() {
-                // Insira um registro de teste antes de deletar
-                UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234",1);
+        public void testFindById() {
+                // Insira um registro de teste para testar o findById
+                UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234", 1);
 
                 Response insertResponse = given()
                                 .contentType(ContentType.JSON)
                                 .body(usuarioDTO)
-                                .when()
-                                .post("/usuarios");
+                                .when().post("/usuarios");
 
                 insertResponse.then()
                                 .statusCode(201);
-
                 Long id = insertResponse.jsonPath().getLong("id");
 
-                // Agora teste o método de exclusão
+                // Agora teste o método findById
                 given()
                                 .when()
-                                .delete("/usuarios/" + id)
+                                .get("/usuarios/" + id)
                                 .then()
-                                .statusCode(204);
+                                .statusCode(200)
+                                .body("id", equalTo(id.intValue()));
         }
 
 }
