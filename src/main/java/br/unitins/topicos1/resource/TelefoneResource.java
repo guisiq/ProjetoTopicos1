@@ -3,6 +3,7 @@ package br.unitins.topicos1.resource;
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.TelefoneResponseDTO;
 import br.unitins.topicos1.service.TelefoneService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -34,6 +35,7 @@ public class TelefoneResource {
 
     @PUT
     @Transactional
+    @RolesAllowed({"User","Admin"})
     @Path("/{id}")
     public Response update(TelefoneDTO dto, @PathParam("id") Long id) {
         service.update(dto, id);
@@ -60,6 +62,7 @@ public class TelefoneResource {
     }
 
     @GET
+    @RolesAllowed({"User","Admin"})
     @Path("/search/numero/{numero}")
     public Response findByTelefone(@PathParam("numero") String numero) {
         return Response.ok(service.findByNumero(numero)).build();

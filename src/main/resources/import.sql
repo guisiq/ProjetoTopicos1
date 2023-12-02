@@ -124,3 +124,69 @@ VALUES
   (8, 31, '90000-1111'),
   (9, 48, '97777-5555'),
   (10, 84, '98888-2222');
+
+
+
+  --Insert de produto
+
+        INSERT INTO public.produto (preco, quantestoque, nome, tipo)
+VALUES 
+    (100, 10, 'trembo', 'Bomba'),
+    (80, 5, 'bicicleta', 'Equipamento'),
+    (25, 15, 'halteres', 'Acessório'),
+    (50, 8, 'esteira', 'Equipamento'),
+    (15, 20, 'luvas', 'Acessório'),
+    (200, 3, 'máquina de musculação', 'Equipamento'),
+    (30, 12, 'corda de pular', 'Acessório'),
+    (120, 6, 'esteira elétrica', 'Equipamento'),
+    (10, 25, 'toalha de academia', 'Acessório'),
+    (90, 7, 'elíptico', 'Equipamento');
+
+--------------------------------------------------------------------------------
+
+--Insert de cartao
+
+
+INSERT INTO public.cartao (bandeiracartao, cvc, datavalidade, nome, numero)
+VALUES
+    (1, 123, '12/10/2027', 'João', 123456879123),
+    (2, 456, '05/08/2026', 'Maria', 987654321987),
+    (3, 789, '09/11/2027', 'Pedro', 654321789654),
+    (4, 321, '03/05/2026', 'Ana', 789654321123),
+    (1, 654, '08/12/2025', 'Carlos', 987123456321),
+    (1, 987, '01/07/2028', 'Sofia', 147258369456),
+    (2, 159, '06/04/2027', 'Lucas', 963852741369),
+    (3, 753, '11/09/2026', 'Laura', 258369147852),
+    (4, 852, '02/03/2028', 'Gustavo', 369741258963),
+    (1, 246, '07/01/2027', 'Isabella', 654789321456);
+
+    --------------------------------------------------------------------------------
+
+--Insert de itens de pedido
+
+INSERT INTO public.itempedido(preco, quantidade, id, id_pedido, id_prduto) VALUES 
+ (15.99, 3, 1, 101, 201);
+ (25.50, 2, 2, 102, 202);
+ (8.75, 1, 3, 103, 203);
+ (50.00, 4, 4, 104, 204);
+ (12.49, 2, 5, 105, 205);
+ (30.75, 3, 6, 106, 206);
+ (18.99, 2, 7, 107, 207);
+ (22.50, 1, 8, 108, 208);
+ (5.99, 4, 9, 109, 209);
+ (40.00, 3, 10, 110, 210);
+
+    --------------------------------------------------------------------------------
+
+--Insert de lista de pedidos de pedido
+
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (150.99, '2023-01-15 08:30:00', 1, 101);
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (220.50, '2023-02-05 12:15:00', 2, 102);
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (80.75, '2023-03-10 16:45:00', 3, 103);
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (350.00, '2023-04-22 09:20:00', 4, 104);
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (98.49, '2023-05-08 14:00:00', 5, 105);
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (180.75, '2023-06-17 18:30:00', 6, 106);
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (120.99, '2023-07-25 10:10:00', 7, 107);
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (90.50, '2023-08-14 20:45:00', 8, 108);
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (45.99, '2023-09-03 15:05:00', 9, 109);
+INSERT INTO public.pedido(totalpedido, datahora, id, id_usuario) VALUES (280.00, '2023-10-12 11:40:00', 10, 110);
