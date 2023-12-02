@@ -1,6 +1,5 @@
 package br.unitins.topicos1;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static io.restassured.RestAssured.given;
@@ -8,6 +7,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -22,6 +22,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
+import br.unitins.topicos1.model.Perfil;
 import br.unitins.topicos1.service.UsuarioService;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -29,104 +30,107 @@ import jakarta.inject.Inject;
 @QuarkusTest
 public class UsuarioResourceTest {
 
-    @Inject
-    UsuarioService service;
+        @Inject
+        UsuarioService usuarioService;
 
+        ObjectMapper objectMapper = new ObjectMapper();
 
-    ObjectMapper objectMapper = new ObjectMapper();
-
-    @Test
-    public void testInsert() {
-        UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234",1);
-        given()
-                .contentType(ContentType.JSON)
-                .body(usuarioDTO)
-                .when().post("/usuarios")
-                .then()
-                .statusCode(201)
+        @Test
+        public void testInsert() {
+                UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234", 1);
+                given()
+                                .contentType(ContentType.JSON)
+                                .body(usuarioDTO)
+                                .when().post("/usuarios")
+                                .then()
+                                .statusCode(201)
+                                .body(
+                                "login", is("Teste"),
+                "senha", is("O2JdqlPMBBKPaus+zYDOx/D6Ol9IZk9UFD95DcsTQLBD4euH4P9Sh1OrL4c1l4vLPkYjGgxrMFFUy09ouL7vDA==")
+                );
                 ;
-                     
-    }
 
-    @Test
-    public void testUpdate() {
-        // Crie um novo usuário para atualização
-        UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234",1);
-        Response insertResponse = given()
-                .contentType(ContentType.JSON)
-                .body(usuarioDTO)
-                .when()
-                .post("/usuarios");
-        insertResponse.then()
-                .statusCode(201);
+        }
 
-        // Obtenha o ID do usuário criado
-        Long id = insertResponse.jsonPath().getLong("id");
+        @Test
+        public void testUpdate() {
+                // Crie um novo usuário para atualização
+                UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234", 2);
 
-        // Crie um novo DTO para a atualização do usuário
-        UsuarioDTO dtoUpdate = new UsuarioDTO("teste", "555",2);
+                UsuarioResponseDTO usuarioTest = usuarioService.insert(usuarioDTO);
+                Long id = usuarioTest.id();
+                
+                // Crie um novo DTO para a atualização do usuário
+                UsuarioDTO dtoUpdate = new UsuarioDTO(
+                        "testeNovo",
+                        "555",
+                        2);
 
-        // Faça a requisição PUT para atualizar o usuário
-        given()
-                .contentType(ContentType.JSON)
-                .body(dtoUpdate)
-                .when().put("/usuarios/" + id)
-                .then()
-                .statusCode(204);
+                // Faça a requisição PUT para atualizar o usuário
+                given()
+                        .contentType(ContentType.JSON)
+                        .body(dtoUpdate)
+                        .when().put("/usuarios/" + id)
+                        .then()
+                        .statusCode(204);
 
-        // Obtenha o objeto UsuarioResponseDTO da resposta
-        Response updatedResponse = given()
-                .when()
-                .get("/usuarios/" + id);
+                UsuarioResponseDTO updatedUser = usuarioService.findById(id);
+                assertEquals(dtoUpdate.login(), "testeNovo");
+                assertEquals(dtoUpdate.senha(), "555");
 
-        // Verifique se o usuário foi atualizado corretamente
-        assertEquals("teste", dtoUpdate.getLogin());
-        assertEquals("555", dtoUpdate.getSenha());
-        assertEquals("2", dtoUpdate.);
-    }
 
-    @Test
-    public void testFindAll() {
 
-        UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234");
+                // assertAll("Verificar atualização do usuário",
+                //                 () -> assertEquals("testeNovo", updatedUser.login(),
+                //                                 "Login não foi atualizado corretamente."),
+                //                 () -> assertEquals("555", updatedUser.senha(),
+                //                                 "Senha não foi atualizada corretamente."),
+                //                 () -> assertEquals(, updatedUser.perfil(),
+                //                                 "Perfil não foi atualizado corretamente."));
+        }
 
-        given()
-                .contentType(ContentType.JSON)
-                .body(usuarioDTO)
-                .when().post("/usuarios")
-                .then()
-                .statusCode(201);
+        @Test
+        public void testFindAll() {
 
-        // Agora você pode testar o método findAll
-        given()
-                .when().get("/usuarios")
-                .then()
-                .statusCode(200);
+                UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234", 1);
 
-    }
+                given()
+                                .contentType(ContentType.JSON)
+                                .body(usuarioDTO)
+                                .when().post("/usuarios")
+                                .then()
+                                .statusCode(201);
 
-    @Test
-    public void testDelete() {
-        // Insira um registro de teste antes de deletar
-        UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234");
+                // Agora você pode testar o método findAll
+                given()
+                                .when().get("/usuarios")
+                                .then()
+                                .statusCode(200);
 
-        Response insertResponse = given()
-                .contentType(ContentType.JSON)
-                .body(usuarioDTO)
-                .when()
-                .post("/usuarios");
+        }
 
-        insertResponse.then()
-                .statusCode(201);
+        @Test
+        public void testDelete() {
+                // Insira um registro de teste antes de deletar
+                UsuarioDTO usuarioDTO = new UsuarioDTO("Teste", "1234",1);
 
-        Long id = insertResponse.jsonPath().getLong("id");
+                Response insertResponse = given()
+                                .contentType(ContentType.JSON)
+                                .body(usuarioDTO)
+                                .when()
+                                .post("/usuarios");
 
-        // Agora teste o método de exclusão
-        given()
-                .when()
-                .delete("/usuarios/" + id)
-                .then()
-                .statusCode(204);
-    }
+                insertResponse.then()
+                                .statusCode(201);
+
+                Long id = insertResponse.jsonPath().getLong("id");
+
+                // Agora teste o método de exclusão
+                given()
+                                .when()
+                                .delete("/usuarios/" + id)
+                                .then()
+                                .statusCode(204);
+        }
 
 }

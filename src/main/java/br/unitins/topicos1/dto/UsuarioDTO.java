@@ -1,6 +1,7 @@
 package br.unitins.topicos1.dto;
 
 
+import br.unitins.topicos1.model.Perfil;
 import jakarta.validation.constraints.NotBlank;
 
 public record UsuarioDTO(
@@ -8,12 +9,6 @@ public record UsuarioDTO(
         String login,
         String senha,
         Integer idPerfil
-) {
-
-        // @Override
-        // public String toString() {
-        //         return "{\"login\":\"" + login + "\",\"senha\":\"" + senha + "\",\"idPerfil\":" + idPerfil + "}";
-        // }
-        
+) {        
 
 }
