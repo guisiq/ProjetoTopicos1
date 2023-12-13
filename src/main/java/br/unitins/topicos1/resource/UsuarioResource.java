@@ -1,6 +1,9 @@
 package br.unitins.topicos1.resource;
 
 
+import java.util.HashSet;
+import java.util.List;
+
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import br.unitins.topicos1.dto.UsuarioDTO;
@@ -41,10 +44,18 @@ public class UsuarioResource {
 
     @PUT
     @Transactional
-    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response update(UsuarioDTO dto, @PathParam("id") Long id) {
-        service.update(dto, id);
+
+        if (((HashSet<String>)jwt.getClaim("groups")).contains("Admin")){
+            service.update(dto, id);
+        }else{
+            var username = (String)jwt.getClaim("sub");
+            var usuarioAtualizado = service.update(dto, id,username);
+            if (usuarioAtualizado == null) {
+                return Response.status(401).build();
+            }
+        }
         return Response.noContent().build();
     }
 

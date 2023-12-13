@@ -49,6 +49,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         return UsuarioResponseDTO.valueOf(usuario);
     }
+    @Override
+    @Transactional
+    public UsuarioResponseDTO update(UsuarioDTO dto, Long id, String username) {
+        Usuario usuarioById = repository.findById(id);
+        Usuario usuarioByUsername = repository.findByLogin(username);
+
+        if (usuarioById != null && usuarioByUsername != null && usuarioById.getId() == usuarioByUsername.getId()) {
+            usuarioById.setLogin(dto.login());
+            usuarioById.setSenha(dto.senha());
+            return UsuarioResponseDTO.valueOf(usuarioById);
+        } else {
+            return null;
+        }
+    }
 
     @Override
     @Transactional
