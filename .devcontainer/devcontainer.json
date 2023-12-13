@@ -5,6 +5,7 @@
     "settings": { 
         "java.home": "/usr/lib/jvm/java-17-openjdk-amd64"
     },
+    "forwardPorts": [8080,5005],
     "customizations": {
         "vscode": {
             "extensions": [
