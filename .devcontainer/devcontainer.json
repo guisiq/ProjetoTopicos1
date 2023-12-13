@@ -1,0 +1,17 @@
+{
+    "dockerComposeFile": "./docker-compose.codespaces.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "settings": { 
+        "java.home": "/usr/lib/jvm/java-17-openjdk-amd64"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "github.copilot",
+                "github.copilot-chat",
+                "vscjava.vscode-java-pack"
+            ]
+        }
+    }
+}
