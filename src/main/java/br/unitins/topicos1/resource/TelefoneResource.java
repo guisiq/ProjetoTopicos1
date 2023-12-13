@@ -1,8 +1,11 @@
 package br.unitins.topicos1.resource;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
 import br.unitins.topicos1.dto.TelefoneDTO;
 import br.unitins.topicos1.dto.TelefoneResponseDTO;
 import br.unitins.topicos1.service.TelefoneService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -26,7 +29,11 @@ public class TelefoneResource {
     @Inject
     TelefoneService service;
 
+    @Inject
+    JsonWebToken jwt;
+
     @POST
+    @RolesAllowed({"User"})
     public Response insert(@Valid TelefoneDTO dto) {
         TelefoneResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
@@ -34,6 +41,7 @@ public class TelefoneResource {
 
     @PUT
     @Transactional
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response update(TelefoneDTO dto, @PathParam("id") Long id) {
         service.update(dto, id);
@@ -42,6 +50,7 @@ public class TelefoneResource {
 
     @DELETE
     @Transactional
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         service.delete(id);
@@ -49,17 +58,20 @@ public class TelefoneResource {
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     public Response findAll() {
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/search/numero/{numero}")
     public Response findByTelefone(@PathParam("numero") String numero) {
         return Response.ok(service.findByNumero(numero)).build();

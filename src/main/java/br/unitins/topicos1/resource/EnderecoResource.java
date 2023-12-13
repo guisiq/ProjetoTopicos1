@@ -1,5 +1,7 @@
 package br.unitins.topicos1.resource;
 
+import org.jboss.logging.Logger;
+
 import br.unitins.topicos1.dto.EnderecoDTO;
 import br.unitins.topicos1.dto.EnderecoResponseDTO;
 import br.unitins.topicos1.service.EnderecoService;
@@ -27,7 +29,11 @@ public class EnderecoResource {
     @Inject
     EnderecoService service;
 
+
+    private static final Logger LOG = Logger.getLogger(EnderecoResource.class);
+
     @POST
+    @RolesAllowed({"User","Admin"})
     public Response insert(@Valid EnderecoDTO dto) {
         EnderecoResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
@@ -35,6 +41,7 @@ public class EnderecoResource {
 
     @PUT
     @Transactional
+    @RolesAllowed({"User","Admin"})
     @Path("/{id}")
     public Response update(EnderecoDTO dto, @PathParam("id") Long id) {
         service.update(dto, id);
@@ -43,6 +50,7 @@ public class EnderecoResource {
 
     @DELETE
     @Transactional
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         service.delete(id);
@@ -50,17 +58,20 @@ public class EnderecoResource {
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     public Response findAll() {
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(service.findByNome(nome)).build();

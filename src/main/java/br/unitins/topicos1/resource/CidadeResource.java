@@ -1,8 +1,11 @@
 package br.unitins.topicos1.resource;
 
+import org.jboss.logging.Logger;
+
 import br.unitins.topicos1.dto.CidadeDTO;
 import br.unitins.topicos1.dto.CidadeResponseDTO;
 import br.unitins.topicos1.service.CidadeService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -26,7 +29,11 @@ public class CidadeResource {
     @Inject
     CidadeService service;
 
+    private static final Logger LOG = Logger.getLogger(CidadeResource.class);
+
+
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert(@Valid CidadeDTO dto) {
         CidadeResponseDTO retorno = service.insert(dto);
         return Response.status(201).entity(retorno).build();
@@ -34,6 +41,7 @@ public class CidadeResource {
 
     @PUT
     @Transactional
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response update(CidadeDTO dto, @PathParam("id") Long id) {
         service.update(dto, id);
@@ -42,6 +50,7 @@ public class CidadeResource {
 
     @DELETE
     @Transactional
+    @RolesAllowed({"Admin"})
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         service.delete(id);
@@ -49,17 +58,20 @@ public class CidadeResource {
     }
 
     @GET
+    @RolesAllowed({"User","Admin"})
     public Response findAll() {
         return Response.ok(service.findByAll()).build();
     }
 
     @GET
+    @RolesAllowed({"User","Admin"})
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         return Response.ok(service.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed({"User","Admin"})
     @Path("/search/nome/{nome}")
     public Response findByNome(@PathParam("nome") String nome) {
         return Response.ok(service.findByNome(nome)).build();
